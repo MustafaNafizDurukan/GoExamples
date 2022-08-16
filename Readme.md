@@ -1,0 +1,1 @@
+In this repo i want to share things that i learnt so lets start.
