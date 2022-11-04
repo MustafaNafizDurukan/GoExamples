@@ -163,7 +163,7 @@ We call Write function with  b.wr.Write(b.buf[0:b.n]) as you see. Now run progra
 
 ### wr.Write()
 
-```
+```go
 func (t *multiWriter) Write(p []byte) (n int, err error) {
 	for _, w := range t.writers {
 		n, err = w.Write(p)
