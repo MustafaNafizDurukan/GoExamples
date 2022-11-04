@@ -4,9 +4,9 @@ Below is a list of what i want to cover next.
 
 - [ ]  io
     - [x]  Reader
-        - [x]  [LimitReader](https://github.com/MustafaNafizDurukan/GoStdLibExamples/tree/main/examples/io.LimitReader)
-        - [x]  [MultiReader](https://github.com/MustafaNafizDurukan/GoStdLibExamples/tree/main/examples/io.MultiWriter)
-        - [x]  [TeeReader](https://github.com/MustafaNafizDurukan/GoStdLibExamples/tree/main/examples/io.TeeReader)
+        - [x]  [LimitReader](examples/io/LimitReader)
+        - [x]  [MultiReader](examples/io/MultiWriter)
+        - [x]  [TeeReader](examples/io/TeeReader)
     - [ ]  SectionReader
         - [ ]  NewSectionReader
     - [ ]  Copy
