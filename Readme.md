@@ -7,8 +7,11 @@ Below is a list of what i want to cover next.
         - [x]  [LimitReader](examples/io/LimitReader)
         - [x]  [MultiReader](examples/io/MultiWriter)
         - [x]  [TeeReader](examples/io/TeeReader)
-    - [ ]  SectionReader
-        - [ ]  NewSectionReader
+    - [x]  SectionReader(examples/io/SectionReader)
+        - [x]  NewSectionReader
+        - [x]  Seek
+        - [x]  Read
+        - [x]  ReadAt
     - [ ]  Copy
     - [ ]  CopyBuffer
     - [ ]  CopyN
