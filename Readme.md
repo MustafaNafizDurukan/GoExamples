@@ -12,6 +12,7 @@ Below is a list of what i want to cover next.
         - [x]  Seek
         - [x]  Read
         - [x]  ReadAt
+    - [x] [Difference of LimitReader and SectionReader](examples/io/DiffLimitnSection)
     - [ ]  Copy
     - [ ]  CopyBuffer
     - [ ]  CopyN
