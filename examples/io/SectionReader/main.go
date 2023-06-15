@@ -3,42 +3,110 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 )
 
 func main() {
-	// Create a new io.Reader that reads from a file
+	fmt.Println("Read")
+	Read()
+	fmt.Println("------------------------------------------")
+	fmt.Println("Seek")
+	Seek()
+	fmt.Println("------------------------------------------")
+	fmt.Println("ReadAt")
+	ReadAt()
+	fmt.Println("------------------------------------------")
+	fmt.Println("Size")
+	Size()
+}
+
+func Read() {
 	file, err := os.Open("myfile.txt")
 	if err != nil {
-		// Handle the error
+		log.Fatal(err)
 	}
 
-	// Create a new io.SectionReader that reads from the file starting at byte 10
-	// and ending at byte 30
-	reader := io.NewSectionReader(file, 10, 20)
+	reader := io.NewSectionReader(file, 5, 100)
 
-	// Read the contents of the io.SectionReader using the Read method
-	data, err := io.ReadAll(reader)
+	firstChunk := make([]byte, 10)
+	_, err = reader.Read(firstChunk)
 	if err != nil {
-		// Handle the error
+		log.Fatal(err)
 	}
 
-	// Use the data read from the io.SectionReader
-	fmt.Println(len(data))
-	fmt.Println(string(data))
+	fmt.Println(string(firstChunk))
 
-	// Seek to the beginning of the io.SectionReader using the Seek method
-	_, err = reader.Seek(0, io.SeekStart)
+	secondChunk := make([]byte, 15)
+	_, err = reader.Read(secondChunk)
 	if err != nil {
-		// Handle the error
+		log.Fatal(err)
 	}
 
-	// Read the contents of the io.SectionReader again using the ReadAt method
-	data, err = io.ReadAll(reader)
+	fmt.Println(string(secondChunk))
+
+	lastChunk, err := io.ReadAll(reader)
 	if err != nil {
-		// Handle the error
+		log.Fatal(err)
 	}
 
-	// Use the data read from the io.SectionReader
-	fmt.Println(string(data))
+	fmt.Println(string(lastChunk))
+}
+
+func Seek() {
+	file, err := os.Open("myfile.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reader := io.NewSectionReader(file, 5, 100)
+
+	// Move the offset 20 bytes from the start of the section
+	_, err = reader.Seek(20, io.SeekStart)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	chunk := make([]byte, 15)
+	_, err = reader.Read(chunk)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(chunk))
+}
+
+func ReadAt() {
+	file, err := os.Open("myfile.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reader := io.NewSectionReader(file, 5, 100)
+
+	chunk := make([]byte, 10)
+	_, err = reader.ReadAt(chunk, 20)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(chunk))
+
+	// Read the first 10 bytes of the section again
+	_, err = reader.Read(chunk)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(chunk))
+}
+
+func Size() {
+	file, err := os.Open("myfile.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reader := io.NewSectionReader(file, 5, 100)
+	fmt.Println(reader.Size())
 }
