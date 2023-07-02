@@ -1,0 +1,1 @@
+Hi everyone! This is an example of using OffsetWriter in Go
